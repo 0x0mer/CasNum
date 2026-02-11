@@ -59,8 +59,8 @@ class CasNum:
     def __int__(self):
         return self.to_int()
 
-    @functools.lru_cache(maxsize=None)
     @staticmethod
+    @functools.lru_cache(maxsize=None)
     def from_num(n):
         if n > 0:
             p = generate_n(n, origin, unit)
@@ -68,8 +68,8 @@ class CasNum:
             p = Point(0, 0)
         return CasNum(p)
 
-    @functools.lru_cache(maxsize=None)
     @staticmethod
+    @functools.lru_cache(maxsize=None)
     def copy(a):
         return CasNum(a.p)
 
@@ -107,8 +107,8 @@ class CasNum:
     def __neg__(self):
         return CasNum(mirror_point_on_x_axis(self.p, origin))
 
-    @functools.lru_cache(maxsize=None)
     @staticmethod
+    @functools.lru_cache(maxsize=None)
     def abs(a):
         if a < zero:
             return -a
@@ -136,8 +136,8 @@ class CasNum:
             remainder = remainder + abs_b
         return remainder
 
-    @functools.lru_cache(maxsize=None)
     @staticmethod
+    @functools.lru_cache(maxsize=None)
     def double_until_gt(a, b, strict=True):
         to_rem = CasNum.copy(b)
         while a > to_rem or (not strict and a == to_rem):
@@ -160,8 +160,8 @@ class CasNum:
             cpy_b = cpy_b - one
         return cpy_a
 
-    @functools.lru_cache(maxsize=None)
     @staticmethod
+    @functools.lru_cache(maxsize=None)
     def pow_mod(a, b, n):
         """
         Using square and multiply
@@ -269,8 +269,8 @@ class CasNum:
             ret = -ret
         return ret
 
-    @functools.lru_cache(maxsize=None)
     @staticmethod
+    @functools.lru_cache(maxsize=None)
     def mul2(a):
         return CasNum(double_point_on_x_axis(origin, a.p))
 
@@ -300,8 +300,8 @@ class CasNum:
         return cpy_a
 
     # TODO: Think about whether this is cheating (i.e., assuming we get the number in binary)
-    @functools.lru_cache(maxsize=None)
     @staticmethod
+    @functools.lru_cache(maxsize=None)
     def get_n(n):
         invert = n < 0
         if invert:
@@ -317,13 +317,13 @@ class CasNum:
             ret = -ret
         return ret
 
-    @functools.lru_cache(maxsize=None)
     @staticmethod
+    @functools.lru_cache(maxsize=None)
     def to_bin_arr(a):
         pass
 
-    @functools.lru_cache(maxsize=None)
     @staticmethod
+    @functools.lru_cache(maxsize=None)
     def gcd(a, b):
         cpy_a = CasNum.copy(a)
         cpy_b = CasNum.copy(b)
@@ -333,8 +333,8 @@ class CasNum:
             cpy_b = temp
         return CasNum.abs(cpy_a)
 
-    @functools.lru_cache(maxsize=None)
     @staticmethod
+    @functools.lru_cache(maxsize=None)
     def inv_mod(i, n):
         d, x1, x2, y1 = zero, one, zero, one
         temp_n = n
@@ -357,8 +357,8 @@ class CasNum:
     def floor(a):
         return a // one
 
-    @functools.lru_cache(maxsize=None)
     @staticmethod
+    @functools.lru_cache(maxsize=None)
     def xor_positive(a, b):
         if a < zero or b < zero:
             raise ValueError("XOR is defined for non-negative CasNum integers here.")
@@ -409,8 +409,8 @@ class CasNum:
             return xor_val - twos_n
         return xor_val
 
-    @functools.lru_cache(maxsize=None)
     @staticmethod
+    @functools.lru_cache(maxsize=None)
     def and_positive(a, b):
         if a < zero or b < zero:
             raise ValueError("AND is defined for non-negative CasNum integers here.")
@@ -464,8 +464,8 @@ class CasNum:
         temp = temp >> n
         return temp % two
 
-    @functools.lru_cache(maxsize=None)
     @staticmethod
+    @functools.lru_cache(maxsize=None)
     def or_positive(a, b):
         if a < zero or b < zero:
             raise ValueError("AND is defined for non-negative CasNum integers here.")
