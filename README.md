@@ -56,8 +56,7 @@ Man, I'm sure the ancient Greeks would have loved to see this.
 Thanks to the great code written by [PyBoy](https://github.com/Baekalfen/PyBoy),
 integrating `CasNum` within it was pretty seamless.
 The only file I needed to edit was `opcodes_gen.py`, and the edit was pretty
-minimal. Though this is not strictly necessary, I also edited the `__main__.py`
-to show the points, lines, and circles drawn during the course of the program.
+minimal. 
 
 ## Examples and how to run
 
@@ -75,6 +74,9 @@ You can run the rsa and basic examples from the repo's root directory like so:
 python3 -m examples.basic
 python3 -m examples.rsa
 ```
+The library comes with a viewer (`casnum/cas/viewer.py`) that shows the compass
+and straightedge constructions. It has an automatic zoom that kinda works, but it
+goes crazy in the rsa example, so you may want to use manual zoom there.
 
 In order to run PyBoy, first you need a ROM. In order to avoid copyright
 infringement, I included the ROM for [2048](https://github.com/Sanqui/2048-gb), 
@@ -89,7 +91,7 @@ Then, once in python, run:
 from pyboy import PyBoy
 from casnum import viewer
 viewer.start()
-pyboy = PyBoy('2048.gb')
+pyboy = PyBoy('2048.gb') # Or whatever ROM you have
 while pyboy.tick():
     pass
 
