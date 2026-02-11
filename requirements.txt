@@ -1,2 +1,4 @@
 sympy
 pyglet==2.1.13
+pytest-lazy-fixtures
+pycryptodome

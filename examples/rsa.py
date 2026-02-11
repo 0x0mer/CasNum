@@ -23,7 +23,7 @@ def generate_keys(e = CasNum.get_n(2**16+1), nbits=10):
     return (e, n), (d, n)
 
 def rsa_encrypt(m, e, n):
-    num_representation = cn(bytes_to_long(plain.encode()))
+    num_representation = cn(bytes_to_long(m.encode()))
     if num_representation >= n:
         raise ValueError("Cannot encrypt message. Use bigger keys")
     return CasNum.pow_mod(num_representation, e, n)

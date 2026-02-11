@@ -379,11 +379,11 @@ class OpcodeData:
             # flag |= (((cpu.SP & 0xF) + (v & 0xF)) > 0xF) << FLAGH
             if self.flag_h == "H":
                 c = " %s CasNum.get_n((CasNum.get_n(cpu.F).get_nth_bit(FLAGC)) != zero)" % op if carry else ""
-                lines.append("flag = flag | (CasNum.get_n(((%s & CasNum.get_n(0xF)) %s (%s & CasNum.get_n(0xF))%s) > CasNum.get_n(0xF)) << FLAGH)" % (r0, op, r1, c))
+                lines.append("flag = flag | (CasNum.get_n(((CasNum.get_n(%s) & CasNum.get_n(0xF)) %s (CasNum.get_n(%s) & CasNum.get_n(0xF))%s) > CasNum.get_n(0xF)) << FLAGH)" % (r0, op, r1, c))
 
             # flag |= (((cpu.SP & 0xFF) + (v & 0xFF)) > 0xFF) << FLAGC
             if self.flag_c == "C":
-                lines.append("flag = flag | (CasNum.get_n(((%s & CasNum.get_n(0xFF)) %s (%s & CasNum.get_n(0xFF))%s) > CasNum.get_n(0xFF)) << FLAGC)" % (r0, op, r1, c))
+                lines.append("flag = flag | (CasNum.get_n(((CasNum.get_n(%s) & CasNum.get_n(0xFF)) %s (CasNum.get_n(%s) & CasNum.get_n(0xFF))%s) > CasNum.get_n(0xFF)) << FLAGC)" % (r0, op, r1, c))
 
             # Clears all flags affected by the operation
             lines.append("cpu.F = 0b00000000")  # E8 and F8 clears N and Z. The rest are dynamic

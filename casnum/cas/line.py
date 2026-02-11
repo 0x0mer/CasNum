@@ -1,4 +1,4 @@
-from sympy import Abs, Matrix, sqrt, sympify
+from sympy import Abs, Matrix, sqrt, sympify, zoo
 from .point import Point
 from .sympy_utils import my_simplify
 from .viewer import viewer, enable_graphics

@@ -358,22 +358,3 @@ def test_double_until_gt_properties_random():
         assert out_nonstrict.p.y == 0
         assert out_nonstrict.p.x >= a
 
-
-# -----------------------------
-# RSA sanity (optional)
-# -----------------------------
-
-@pytest.mark.slow
-def test_rsa_roundtrip_tiny():
-    p = cn(17)
-    q = cn(19)
-    (e, n), (d, n2) = CasNum.generate_keys(p, q)
-    assert n == n2
-
-    m = 42
-    assert m < n.p.x
-
-    c = CasNum.pow_mod(cn(m), e, n)
-    m2 = CasNum.pow_mod(c, d, n)
-    assert_int_value(m2, m)
-

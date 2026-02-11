@@ -155,7 +155,6 @@ class CasNum:
         cpy_a = CasNum.copy(self)
         cpy_b = other - one
         while cpy_b > zero:
-            print(cpy_a, self)
             cpy_a = cpy_a * self
             cpy_b = cpy_b - one
         return cpy_a
@@ -319,11 +318,6 @@ class CasNum:
 
     @staticmethod
     @functools.lru_cache(maxsize=None)
-    def to_bin_arr(a):
-        pass
-
-    @staticmethod
-    @functools.lru_cache(maxsize=None)
     def gcd(a, b):
         cpy_a = CasNum.copy(a)
         cpy_b = CasNum.copy(b)
@@ -397,7 +391,6 @@ class CasNum:
         transform = CasNum.copy(zero)
         cpy_a = self
         cpy_b = other
-        print(CasNum.abs(self), twos_n_a)
         if self < zero:
             transform = transform + one
             cpy_a = self + twos_n
@@ -529,9 +522,13 @@ class CasNum:
         return CasNum(p) - q
 
     def is_prime(self):
-        lim = (self.sqrt() + one).floor()
+        if self == one:
+            return False
+        if self == two:
+            return True
         if self % two == zero:
             return False
+        lim = (self.sqrt() + one).floor()
         cur = two + one
         while cur < lim:
             if self % cur == zero:
