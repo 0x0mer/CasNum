@@ -84,6 +84,7 @@ free to distribute under the zlib license. But if, for example, the ROM you have
 is 'Pokemon.gb', then you can place it in examples/Pyboy, cd into examples/PyBoy
 and run:
 ```sh
+pip install -r requirements.txt
 PYTHONPATH=../.. python
 ```
 Then, once in python, run:
