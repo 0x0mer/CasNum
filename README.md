@@ -81,9 +81,9 @@ goes crazy in the rsa example, so you may want to use manual zoom there.
 In order to run PyBoy, first you need a ROM. In order to avoid copyright
 infringement, I included the ROM for [2048](https://github.com/Sanqui/2048-gb), 
 free to distribute under the zlib license. But if, for example, the ROM you have
-is 'Pokemon.gb', then you can place it in examples/Pyboy, cd into examples/PyBoy
-and run:
+is 'Pokemon.gb', then you can place it in examples/Pyboy and run:
 ```sh
+cd examples/PyBoy
 pip install -r requirements.txt
 PYTHONPATH=../.. python
 ```
@@ -101,7 +101,7 @@ pyboy.stop()
 the `viewer.start()` just displays the compass-and-straightedge constructions, it is not
 strictly needed, but it is fun.
 
-Notice however that the first run of the Game Boy emulator takes approximately 15
+Notice however that the first run of Pokemon on the Game Boy emulator takes approximately 15
 minutes to boot, so playing it may require somewhat increased patience. You see, Euclid wouldn't have optimized the Game Boy boot screen.
 He would have spent those 15 minutes in silent appreciation, thinking, "Yeah.
 That’s about how long that should take."
@@ -128,6 +128,8 @@ as everything is so expensive. Memory usage may blow up, run at your own risk.
 * sympy
 * pyglet (optional but highly recommended. Only needed if you want to display the
 compass-and-straightedge constructions)
+* pytest-lazy-fixtures (Only needed in order to run the tests)
+* pycryptodome (Only needed if you want to run the rsa example)
 * Euclid Postulate V (optional)
 
 ## F.A.Q
