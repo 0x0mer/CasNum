@@ -1,0 +1,3 @@
+[submodule "examples/PyBoy"]
+	path = examples/PyBoy
+	url = https://github.com/0x0mer/PyBoy.git
