@@ -28,7 +28,7 @@ The origin, and a unit. Exactly as God intended. The engine then allows us to do
 -   Construct the circle that contains one point and has a center at another point
 -   Construct the point at the intersection of two (non-parallel) lines
 -   Construct the one or two points in the intersection of a line and a circle (if they intersect)
--   Construct the one point or two points in the intersection of two circles (if they intersect) (Which, by the way turns out to be a nasty 4th degree equation. Check out the formula in `circle.py`, over 3600 characters, yikes. Good thing we have WolframAlpha).
+-   Construct the one point or two points in the intersection of two circles (if they intersect)
 
 These five constructions are considered the basic compass and straightedge constructions. Think of these as your ISA.
 
@@ -114,9 +114,9 @@ to get a decent 0.5~1 FPS, which is totally almost playable.
 
 Most modern developers are content with `a + b`. They don't want to work for it.
 They don't want to see the midpoint being birthed from the intersection of two circles.
-`CasNum` is for the developer who believes that if you didn't have to solve a
-4th-degree polynomial just to increment a loop counter,
-you didn't really increment it.
+`CasNum` is for the developer who believes that if you didn't have to solve a system
+of quadratic equations just to increment a loop counter, you didn't really
+increment it.
 
 ## Performance
 Python's `lru_cache` is used to cache almost any calculation done in the library,

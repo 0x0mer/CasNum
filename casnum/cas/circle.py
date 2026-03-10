@@ -22,69 +22,15 @@ class Circle:
     
     @staticmethod
     def get_intersection(c1, c2):
-        # TODO: Test the case of containment of one circle inside another with tangent circles
-        # I don't think I ever tested tangency. It currently uses symbolic equality and should probably approximate
-        # And also the case of center of one circle is contained in another circle with 2 pts of intersection
-        # Also, tangent circle intersection uses center_line.slope and center_line.at(x) without handling vertical center lines.
-        ret = []
-        if Point.dist(c1.center, c2.center) < (c1.radius + c2.radius) and Point.dist(c1.center, c2.center) > abs(c1.radius - c2.radius):
-            # In this case, there will be two intersection points
-            # Thank god for WolframAlpha
-            y1 = c1.center.y - (4 * c1.center.x * c1.center.x * c1.center.y - 4 * c1.center.x * c1.center.x * c2.center.y - sqrt(Pow((-4 * c1.center.x * c1.center.x * c1.center.y + 4 * c1.center.x * c1.center.x * c2.center.y + 8 * c1.center.x * c1.center.y * c2.center.x - 8 * c1.center.x * c2.center.x * c2.center.y - 4 * c1.center.y * c1.center.y * c1.center.y + 12 * c1.center.y * c1.center.y * c2.center.y - 4 * c1.center.y * c2.center.x * c2.center.x - 12 * c1.center.y * c2.center.y * c2.center.y - 4 * c1.center.y * c1.radius * c1.radius + 4 * c1.center.y * c2.radius * c2.radius + 4 * c2.center.x * c2.center.x * c2.center.y + 4 * c2.center.y * c2.center.y * c2.center.y + 4 * c2.center.y * c1.radius * c1.radius - 4 * c2.center.y * c2.radius * c2.radius), 2) - 4 * (4 * c1.center.x * c1.center.x - 8 * c1.center.x * c2.center.x + 4 * c1.center.y * c1.center.y - 8 * c1.center.y * c2.center.y + 4 * c2.center.x * c2.center.x + 4 * c2.center.y * c2.center.y) * (c1.center.x * c1.center.x * c1.center.x * c1.center.x - 4 * c1.center.x * c1.center.x * c1.center.x * c2.center.x + 2 * c1.center.x * c1.center.x * c1.center.y * c1.center.y - 4 * c1.center.x * c1.center.x * c1.center.y * c2.center.y + 6 * c1.center.x * c1.center.x * c2.center.x * c2.center.x + 2 * c1.center.x * c1.center.x * c2.center.y * c2.center.y - 2 * c1.center.x * c1.center.x * c1.radius * c1.radius - 2 * c1.center.x * c1.center.x * c2.radius * c2.radius - 4 * c1.center.x * c1.center.y * c1.center.y * c2.center.x + 8 * c1.center.x * c1.center.y * c2.center.x * c2.center.y - 4 * c1.center.x * c2.center.x * c2.center.x * c2.center.x - 4 * c1.center.x * c2.center.x * c2.center.y * c2.center.y + 4 * c1.center.x * c2.center.x * c1.radius * c1.radius + 4 * c1.center.x * c2.center.x * c2.radius * c2.radius + c1.center.y * c1.center.y * c1.center.y * c1.center.y - 4 * c1.center.y * c1.center.y * c1.center.y * c2.center.y + 2 * c1.center.y * c1.center.y * c2.center.x * c2.center.x + 6 * c1.center.y * c1.center.y * c2.center.y * c2.center.y + 2 * c1.center.y * c1.center.y * c1.radius * c1.radius - 2 * c1.center.y * c1.center.y * c2.radius * c2.radius - 4 * c1.center.y * c2.center.x * c2.center.x * c2.center.y - 4 * c1.center.y * c2.center.y * c2.center.y * c2.center.y - 4 * c1.center.y * c2.center.y * c1.radius * c1.radius + 4 * c1.center.y * c2.center.y * c2.radius * c2.radius + c2.center.x * c2.center.x * c2.center.x * c2.center.x + 2 * c2.center.x * c2.center.x * c2.center.y * c2.center.y - 2 * c2.center.x * c2.center.x * c1.radius * c1.radius - 2 * c2.center.x * c2.center.x * c2.radius * c2.radius + c2.center.y * c2.center.y * c2.center.y * c2.center.y + 2 * c2.center.y * c2.center.y * c1.radius * c1.radius - 2 * c2.center.y * c2.center.y * c2.radius * c2.radius + c1.radius * c1.radius * c1.radius * c1.radius - 2 * c1.radius * c1.radius * c2.radius * c2.radius + c2.radius * c2.radius * c2.radius * c2.radius)) - 8 * c1.center.x * c1.center.y * c2.center.x + 8 * c1.center.x * c2.center.x * c2.center.y + 4 * c1.center.y * c1.center.y * c1.center.y - 12 * c1.center.y * c1.center.y * c2.center.y + 4 * c1.center.y * c2.center.x * c2.center.x + 12 * c1.center.y * c2.center.y * c2.center.y + 4 * c1.center.y * c1.radius * c1.radius - 4 * c1.center.y * c2.radius * c2.radius - 4 * c2.center.x * c2.center.x * c2.center.y - 4 * c2.center.y * c2.center.y * c2.center.y - 4 * c2.center.y * c1.radius * c1.radius + 4 * c2.center.y * c2.radius * c2.radius) / (2 * (4 * c1.center.x * c1.center.x - 8 * c1.center.x * c2.center.x + 4 * c1.center.y * c1.center.y - 8 * c1.center.y * c2.center.y + 4 * c2.center.x * c2.center.x + 4 * c2.center.y * c2.center.y))
-            y2 = c1.center.y - ((4 * c1.center.x * c1.center.x * c1.center.y - 4 * c1.center.x * c1.center.x * c2.center.y + sqrt(Pow((-4 * c1.center.x * c1.center.x * c1.center.y + 4 * c1.center.x * c1.center.x * c2.center.y + 8 * c1.center.x * c1.center.y * c2.center.x - 8 * c1.center.x * c2.center.x * c2.center.y - 4 * c1.center.y * c1.center.y * c1.center.y + 12 * c1.center.y * c1.center.y * c2.center.y - 4 * c1.center.y * c2.center.x * c2.center.x - 12 * c1.center.y * c2.center.y * c2.center.y - 4 * c1.center.y * c1.radius * c1.radius + 4 * c1.center.y * c2.radius * c2.radius + 4 * c2.center.x * c2.center.x * c2.center.y + 4 * c2.center.y * c2.center.y * c2.center.y + 4 * c2.center.y * c1.radius * c1.radius - 4 * c2.center.y * c2.radius * c2.radius), 2) - 4 * (4 * c1.center.x * c1.center.x - 8 * c1.center.x * c2.center.x + 4 * c1.center.y * c1.center.y - 8 * c1.center.y * c2.center.y + 4 * c2.center.x * c2.center.x + 4 * c2.center.y * c2.center.y) * (c1.center.x * c1.center.x * c1.center.x * c1.center.x - 4 * c1.center.x * c1.center.x * c1.center.x * c2.center.x + 2 * c1.center.x * c1.center.x * c1.center.y * c1.center.y - 4 * c1.center.x * c1.center.x * c1.center.y * c2.center.y + 6 * c1.center.x * c1.center.x * c2.center.x * c2.center.x + 2 * c1.center.x * c1.center.x * c2.center.y * c2.center.y - 2 * c1.center.x * c1.center.x * c1.radius * c1.radius - 2 * c1.center.x * c1.center.x * c2.radius * c2.radius - 4 * c1.center.x * c1.center.y * c1.center.y * c2.center.x + 8 * c1.center.x * c1.center.y * c2.center.x * c2.center.y - 4 * c1.center.x * c2.center.x * c2.center.x * c2.center.x - 4 * c1.center.x * c2.center.x * c2.center.y * c2.center.y + 4 * c1.center.x * c2.center.x * c1.radius * c1.radius + 4 * c1.center.x * c2.center.x * c2.radius * c2.radius + c1.center.y * c1.center.y * c1.center.y * c1.center.y - 4 * c1.center.y * c1.center.y * c1.center.y * c2.center.y + 2 * c1.center.y * c1.center.y * c2.center.x * c2.center.x + 6 * c1.center.y * c1.center.y * c2.center.y * c2.center.y + 2 * c1.center.y * c1.center.y * c1.radius * c1.radius - 2 * c1.center.y * c1.center.y * c2.radius * c2.radius - 4 * c1.center.y * c2.center.x * c2.center.x * c2.center.y - 4 * c1.center.y * c2.center.y * c2.center.y * c2.center.y - 4 * c1.center.y * c2.center.y * c1.radius * c1.radius + 4 * c1.center.y * c2.center.y * c2.radius * c2.radius + c2.center.x * c2.center.x * c2.center.x * c2.center.x + 2 * c2.center.x * c2.center.x * c2.center.y * c2.center.y - 2 * c2.center.x * c2.center.x * c1.radius * c1.radius - 2 * c2.center.x * c2.center.x * c2.radius * c2.radius + c2.center.y * c2.center.y * c2.center.y * c2.center.y + 2 * c2.center.y * c2.center.y * c1.radius * c1.radius - 2 * c2.center.y * c2.center.y * c2.radius * c2.radius + c1.radius * c1.radius * c1.radius * c1.radius - 2 * c1.radius * c1.radius * c2.radius * c2.radius + c2.radius * c2.radius * c2.radius * c2.radius))) - 8 * c1.center.x * c1.center.y * c2.center.x + 8 * c1.center.x * c2.center.x * c2.center.y + 4 * c1.center.y * c1.center.y * c1.center.y - 12 * c1.center.y * c1.center.y * c2.center.y + 4 * c1.center.y * c2.center.x * c2.center.x + 12 * c1.center.y * c2.center.y * c2.center.y + 4 * c1.center.y * c1.radius * c1.radius - 4 * c1.center.y * c2.radius * c2.radius - 4 * c2.center.x * c2.center.x * c2.center.y - 4 * c2.center.y * c2.center.y * c2.center.y - 4 * c2.center.y * c1.radius * c1.radius + 4 * c2.center.y * c2.radius * c2.radius) / (2 * (4 * c1.center.x * c1.center.x - 8 * c1.center.x * c2.center.x + 4 * c1.center.y * c1.center.y - 8 * c1.center.y * c2.center.y + 4 * c2.center.x * c2.center.x + 4 * c2.center.y * c2.center.y))
-            temp1 = sqrt(c1.radius**2 - (y1 - c1.center.y)**2)
-            possible_xs1 = [c1.center.x + temp1, c1.center.x - temp1]
-            if are_expressions_approx_equal(y1, y2):
-                ret.extend([Point(possible_xs1[0], y1), Point(possible_xs1[1], y2)])
-                return ret
-
-            temp2 = sqrt(c2.radius**2 - (y1 - c2.center.y)**2)
-            possible_xs2 = [c2.center.x + temp2, c2.center.x - temp2]
-            for cur_x1 in possible_xs1:
-                for cur_x2 in possible_xs2:
-                    if are_expressions_approx_equal(cur_x1, cur_x2):
-                        x1 = cur_x1
-                        break
-
-            temp1 = sqrt(c1.radius**2 - (y2 - c1.center.y)**2)
-            temp2 = sqrt(c2.radius**2 - (y2 - c2.center.y)**2)
-            possible_xs1 = [c1.center.x + temp1, c1.center.x - temp1]
-            possible_xs2 = [c2.center.x + temp2, c2.center.x - temp2]
-            for cur_x1 in possible_xs1:
-                for cur_x2 in possible_xs2:
-                    if are_expressions_approx_equal(cur_x1, cur_x2):
-                        x2 = cur_x1
-                        break
-            ret.extend([Point(x1, y1), Point(x2, y2)])
-        elif simplify(Point.dist(c1.center, c2.center) - (c1.radius + c2.radius)) == 0:
-            # In this case, there will be one intersection point
-            center_line = Line(c1.center, c2.center)
-            delta_x = sqrt(c1.radius**2/(1 + center_line.slope**2))
-            if c1.center.x < c2.center.x:
-                x = c1.center.x + delta_x
-            else:
-                x = c1.center.x - delta_x
-            ret.extend([center_line.at(x)])
-        elif simplify(Point.dist(c1.center, c2.center) - abs(c1.radius - c2.radius)) == 0:
-            # In this case, there will be one intersection point.
-            # One circle is contained in the other
-            d = Point.dist(c1.center, c2.center)
-            center_line = Line(c1.center, c2.center)
-            if d > c1.radius:
-                # In this case c1 is contained in c2
-                delta_x = sqrt(c2.radius**2/(1 + center_line.slope**2))
-                if c1.center.x < c2.center.x:
-                    x = c2.center.x - delta_x
-                else:
-                    x = c2.center.x + delta_x
-            else:
-                delta_x = sqrt(c1.radius**2/(1 + center_line.slope**2))
-                if c1.center.x < c2.center.x:
-                    x = c1.center.x + delta_x
-                else:
-                    x = c1.center.x - delta_x
-            ret.extend([center_line.at(x)])
-        return ret
+        A = 2 * (c1.center.x - c2.center.x)
+        B = 2 * (c1.center.y - c2.center.y)
+        C = -(c1.center.x**2
+            + c1.center.y**2
+            - c1.radius**2
+            - c2.center.x**2
+            - c2.center.y**2
+            + c2.radius**2)
+        return c1.intersect_with_line(Line.get_line_using_ABC(A,B,C))
 
     def intersect(self, c):
         return Circle.get_intersection(self, c)

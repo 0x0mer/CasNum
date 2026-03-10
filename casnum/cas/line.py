@@ -21,6 +21,16 @@ class Line:
         if enable_graphics:
             viewer.add_line(p1.x, p1.y, p2.x, p2.y)
 
+    @staticmethod
+    def get_line_using_ABC(A, B, C):
+        """Assuming equation of the form Ax + By + C = 0"""
+        if A == 0 and B == 0:
+            raise ValueError("Cannot create a line with A==B==0")
+        if B == 0:
+            x = -C / A
+            return Line(Point(x, 0), Point(x, 1))
+        return Line(Point(0, -C / B), Point(1, -(A + C) / B))
+
     def at(self, x):
         return Point(x, self.slope * x + self.intercept)
 
